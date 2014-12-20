@@ -41,11 +41,13 @@ namespace WindowsFormsApplication9.Service
         }
 
         /*
-         * Save(Shop)  已经有了
+         * Save(Shop) 
          * 
          * GetList(condition)
-         * 
+         *
          * Update(field, value, condition)
+         * 
+         * Update(多个字段，condition)
          * 
          * Delete(condition)
          * 
@@ -55,7 +57,15 @@ namespace WindowsFormsApplication9.Service
          * 
          * GetModel(condition)
          * 
+         * GetData(condition)
+         * 
+         * GetViewData(condition)
+         * 
+         * IsExists(condition)
+         * 
          * Query(condition) 返回IQueryable
+         * 
+         * 创建一个空的实体类，可以重写以便于初始化一些字段
          * 
          * 新增时给特殊字段赋值
          * 

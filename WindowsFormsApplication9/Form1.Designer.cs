@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dg = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnStateTest = new System.Windows.Forms.Button();
+            this.btnHunhe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,11 +90,33 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnStateTest
+            // 
+            this.btnStateTest.Location = new System.Drawing.Point(307, 66);
+            this.btnStateTest.Name = "btnStateTest";
+            this.btnStateTest.Size = new System.Drawing.Size(75, 23);
+            this.btnStateTest.TabIndex = 4;
+            this.btnStateTest.Text = "StateTest";
+            this.btnStateTest.UseVisualStyleBackColor = true;
+            this.btnStateTest.Click += new System.EventHandler(this.btnStateTest_Click);
+            // 
+            // btnHunhe
+            // 
+            this.btnHunhe.Location = new System.Drawing.Point(417, 65);
+            this.btnHunhe.Name = "btnHunhe";
+            this.btnHunhe.Size = new System.Drawing.Size(75, 23);
+            this.btnHunhe.TabIndex = 5;
+            this.btnHunhe.Text = "混合查询";
+            this.btnHunhe.UseVisualStyleBackColor = true;
+            this.btnHunhe.Click += new System.EventHandler(this.btnHunhe_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 589);
+            this.Controls.Add(this.btnHunhe);
+            this.Controls.Add(this.btnStateTest);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dg);
             this.Controls.Add(this.label2);
@@ -115,6 +139,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dg;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnStateTest;
+        private System.Windows.Forms.Button btnHunhe;
 
     }
 }

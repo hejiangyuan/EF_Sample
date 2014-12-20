@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApplication9.Db;
 
 namespace WindowsFormsApplication9.Model
 {
@@ -85,6 +86,21 @@ namespace WindowsFormsApplication9.Model
         public string ShInvExpSetting { get; set; }
         public string ShWebShopOtherParam { get; set; }
         public Guid? ShRelateCustomer { get; set; }
+
+        public string State
+        {
+            get
+            {
+                using (var scope = DbScope.Create())
+                {
+                    var context = scope.DbContexts.Get<FreeDbContext>();
+
+                    var state = context.Entry(this).State;
+
+                    return state.ToString();
+                }
+            }
+        }
 
     }
 }
