@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -13,13 +14,25 @@ namespace WindowsFormsApplication9.Db
     {
         private string _nameOrConnectionString;
 
+        private DbConnection _conn;
+
         public DbContextFactory(string nameOrConnectionString)
         {
             _nameOrConnectionString = nameOrConnectionString;
         }
 
+        public DbContextFactory(DbConnection conn)
+        {
+            _conn = conn;
+        }
+
         public TDbContext CreateDbContext<TDbContext>() where TDbContext : DbContext
         {
+            if (_conn != null)
+            {
+                return Activator.CreateInstance(typeof(TDbContext), _conn) as TDbContext;
+            }
+
             return Activator.CreateInstance(typeof(TDbContext), _nameOrConnectionString) as TDbContext;
         }
     }

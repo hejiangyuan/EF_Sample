@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -21,6 +22,20 @@ namespace WindowsFormsApplication9.Db
             return CreateDbContextScopeFactory(connectString);
         }
 
+        private static DbContextScopeFactory GetDbContextScopeFactory(DbConnection conn)
+        {
+            return CreateDbContextScopeFactory(conn);
+        }
+
+        private static DbContextScopeFactory CreateDbContextScopeFactory(DbConnection conn)
+        {
+            var dbcontextFactory = new DbContextFactory(conn);
+
+            var dbContextScopeFactory = new DbContextScopeFactory(dbcontextFactory);
+
+            return dbContextScopeFactory;
+        }
+
         private static DbContextScopeFactory CreateDbContextScopeFactory(string connectString)
         {
             var dbcontextFactory = new DbContextFactory(connectString);
@@ -35,9 +50,15 @@ namespace WindowsFormsApplication9.Db
             return GetDbContextScopeFactory(domainCode).Create(joiningOption);
         }
 
+
         public static IDbContextReadOnlyScope CreateReadOnly(DbContextScopeOption joiningOption = DbContextScopeOption.JoinExisting, string domainCode = null)
         {
             return GetDbContextScopeFactory(domainCode).CreateReadOnly(joiningOption);
+        }
+
+        public static IDbContextScope Create(DbConnection conn, DbContextScopeOption joiningOption = DbContextScopeOption.JoinExisting)
+        {
+            return GetDbContextScopeFactory(conn).Create(joiningOption);
         }
 
         public static T Parse<T>(DbContext dbContext, T entity) where T : class

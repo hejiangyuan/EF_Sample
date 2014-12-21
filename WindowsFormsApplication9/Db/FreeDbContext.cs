@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace WindowsFormsApplication9.Db
 
         public FreeDbContext(string nameOrConnectionString) :
             base(nameOrConnectionString)
+        {
+            Database.SetInitializer<FreeDbContext>(null);
+        }
+
+        public FreeDbContext(DbConnection conn) :
+            base(conn, false)
         {
             Database.SetInitializer<FreeDbContext>(null);
         }

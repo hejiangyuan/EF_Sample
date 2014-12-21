@@ -36,6 +36,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnStateTest = new System.Windows.Forms.Button();
             this.btnHunhe = new System.Windows.Forms.Button();
+            this.btnSpeedTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 21);
             this.txtName.TabIndex = 0;
+            this.txtName.Text = "ttt";
             // 
             // label1
             // 
@@ -61,6 +63,7 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(100, 21);
             this.txtCode.TabIndex = 0;
+            this.txtCode.Text = "tttt";
             // 
             // label2
             // 
@@ -106,15 +109,26 @@
             this.btnHunhe.Name = "btnHunhe";
             this.btnHunhe.Size = new System.Drawing.Size(75, 23);
             this.btnHunhe.TabIndex = 5;
-            this.btnHunhe.Text = "混合查询";
+            this.btnHunhe.Text = "混合事务";
             this.btnHunhe.UseVisualStyleBackColor = true;
             this.btnHunhe.Click += new System.EventHandler(this.btnHunhe_Click);
+            // 
+            // btnSpeedTest
+            // 
+            this.btnSpeedTest.Location = new System.Drawing.Point(526, 65);
+            this.btnSpeedTest.Name = "btnSpeedTest";
+            this.btnSpeedTest.Size = new System.Drawing.Size(75, 23);
+            this.btnSpeedTest.TabIndex = 6;
+            this.btnSpeedTest.Text = "速度比较";
+            this.btnSpeedTest.UseVisualStyleBackColor = true;
+            this.btnSpeedTest.Click += new System.EventHandler(this.btnSpeedTest_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 589);
+            this.Controls.Add(this.btnSpeedTest);
             this.Controls.Add(this.btnHunhe);
             this.Controls.Add(this.btnStateTest);
             this.Controls.Add(this.btnSave);
@@ -141,6 +155,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnStateTest;
         private System.Windows.Forms.Button btnHunhe;
+        private System.Windows.Forms.Button btnSpeedTest;
 
     }
 }
