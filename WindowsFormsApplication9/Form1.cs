@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ using WindowsFormsApplication9.Model;
 using WindowsFormsApplication9.Service;
 using Numero3.EntityFramework.Interfaces;
 using Oracle.ManagedDataAccess.Client;
+using TSoft.Frame.Utility;
 using TSoft.Frame.Utility.SqlDB;
 
 namespace WindowsFormsApplication9
@@ -264,7 +266,8 @@ namespace WindowsFormsApplication9
                     shop.ShDomainId = Guid.Empty;
 
                     string sql = "select getidentitycode() from dual";
-                    var connStr = "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
+                    var connStr =
+                        "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
 
                     OracleCommand cmd;
                     using (var conn = new OracleConnection(connStr))
@@ -309,7 +312,9 @@ namespace WindowsFormsApplication9
 
                 var sql = string.Format("insert into t1 values('{0}')", DateTime.Now);
 
-                var conn = new OracleConnection("DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;Min Pool Size=10;Max Pool Size=10;");
+                var conn =
+                    new OracleConnection(
+                        "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;Min Pool Size=10;Max Pool Size=10;");
 
                 var cmd = new OracleCommand(sql, conn);
 
@@ -321,7 +326,9 @@ namespace WindowsFormsApplication9
                 conn.Close();
                 conn.Dispose();
 
-                var conn2 = new OracleConnection("DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;Min Pool Size=10;Max Pool Size=10;");
+                var conn2 =
+                    new OracleConnection(
+                        "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;Min Pool Size=10;Max Pool Size=10;");
 
                 var cmd2 = new OracleCommand(sql, conn2);
 
@@ -353,7 +360,8 @@ namespace WindowsFormsApplication9
 
                 var sql = string.Format("insert into t1 values('{0}')", DateTime.Now);
 
-                var connStr = "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
+                var connStr =
+                    "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
 
                 var db = new OracleAcessDataBase(connStr);
 
@@ -401,7 +409,8 @@ namespace WindowsFormsApplication9
             StringBuilder sb = new StringBuilder();
 
             var code = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            var connStr = "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
+            var connStr =
+                "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
 
             var watch = new Stopwatch();
 
@@ -440,20 +449,22 @@ namespace WindowsFormsApplication9
                             "insert into \"SHOP\"(\"SHID\", \"SHDOMAINID\", \"SHIDENTITYCODE\", \"SHCODE\", \"SHNAME\", \"SHDEFAULTWAREHOUSE\", \"SHWEBSHOPPLATFORMTYPE\", \"SHSHORTCUTCODE\", \"SHOUTERCODE\", \"SHWEBSHOPTYPE\", \"SHDESC\", \"SHTYPE\", \"SHLEVEL\", \"SHISWEBSHOP\", \"SHWEBSHOPID\", \"SHWEBSHOPURL\", \"SHWEBSHOPUSERIDENTITY\", \"SHWEBSHOPAPPKEY\", \"SHWEBSHOPAPPSECRET\", \"SHWEBSHOPSESSIONKEY\", \"SHWEBSHOPSESSIONTAG\", \"SHENABLED\", \"SHOWNERNICK\", \"SHOWNERNAME\", \"SHCOUNTRY\", \"SHPROVINCE\", \"SHCITY\", \"SHDISTRICT\", \"SHADDRESS\", \"SHPOSTCODE\", \"SHPHONE\", \"SHFAX\", \"SHAREA\", \"SHTEXT1\", \"SHTEXT2\", \"SHTEXT3\", \"SHTEXT4\", \"SHTEXT5\", \"SHTEXT6\", \"SHTEXT7\", \"SHTEXT8\", \"SHTEXT9\", \"SHTEXT10\", \"SHLONGTEXT1\", \"SHLONGTEXT2\", \"SHLONGTEXT3\", \"SHCHECKBOX1\", \"SHCHECKBOX2\", \"SHCHECKBOX3\", \"SHCHECKBOX4\", \"SHCHECKBOX5\", \"SHDATE1\", \"SHDATE2\", \"SHDATE3\", \"SHINT1\", \"SHINT2\", \"SHINT3\", \"SHDECIMAL1\", \"SHDECIMAL2\", \"SHDECIMAL3\", \"SHCREATEUSER\", \"SHCREATETIME\", \"SHLASTUPDATEUSER\", \"SHLASTUPDATETIME\", \"SHINVEXPSETTING\", \"SHWEBSHOPOTHERPARAM\", \"SHRELATECUSTOMER\") values (:p0, :p1, :p2, :p3, :p4, null, null, null, null, null, null, null, null, :p5, null, null, null, null, null, null, null, :p6, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, :p7, :p8, :p9, :p10, :p11, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)";
 
                         List<OracleParameter> list = new List<OracleParameter>
-                {
-                    new OracleParameter("p0", OracleDbType.Raw, Guid.NewGuid().ToByteArray(), ParameterDirection.Input),
-                    new OracleParameter("p1", OracleDbType.Raw, Guid.Empty.ToByteArray(), ParameterDirection.Input),
-                    new OracleParameter("p2", OracleDbType.NVarchar2, identityCode, ParameterDirection.Input),
-                    new OracleParameter("p3", OracleDbType.NVarchar2,txtName.Text, ParameterDirection.Input),
-                    new OracleParameter("p4", OracleDbType.NVarchar2,txtCode.Text, ParameterDirection.Input),
-                    new OracleParameter("p5", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p6", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p7", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p8", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p9", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p10", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p11", OracleDbType.Int16,0, ParameterDirection.Input),
-                };
+                        {
+                            new OracleParameter("p0", OracleDbType.Raw, Guid.NewGuid().ToByteArray(),
+                                ParameterDirection.Input),
+                            new OracleParameter("p1", OracleDbType.Raw, Guid.Empty.ToByteArray(),
+                                ParameterDirection.Input),
+                            new OracleParameter("p2", OracleDbType.NVarchar2, identityCode, ParameterDirection.Input),
+                            new OracleParameter("p3", OracleDbType.NVarchar2, txtName.Text, ParameterDirection.Input),
+                            new OracleParameter("p4", OracleDbType.NVarchar2, txtCode.Text, ParameterDirection.Input),
+                            new OracleParameter("p5", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            new OracleParameter("p6", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            new OracleParameter("p7", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            new OracleParameter("p8", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            new OracleParameter("p9", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            new OracleParameter("p10", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            new OracleParameter("p11", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        };
 
                         OracleHelper.ExecuteNonQuery(connStr, sql, list.ToArray());
 
@@ -480,7 +491,8 @@ namespace WindowsFormsApplication9
             StringBuilder sb = new StringBuilder();
 
             var code = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            var connStr = "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
+            var connStr =
+                "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
 
             var watch = new Stopwatch();
 
@@ -544,20 +556,21 @@ namespace WindowsFormsApplication9
                         "insert into \"SHOP\"(\"SHID\", \"SHDOMAINID\", \"SHIDENTITYCODE\", \"SHCODE\", \"SHNAME\", \"SHDEFAULTWAREHOUSE\", \"SHWEBSHOPPLATFORMTYPE\", \"SHSHORTCUTCODE\", \"SHOUTERCODE\", \"SHWEBSHOPTYPE\", \"SHDESC\", \"SHTYPE\", \"SHLEVEL\", \"SHISWEBSHOP\", \"SHWEBSHOPID\", \"SHWEBSHOPURL\", \"SHWEBSHOPUSERIDENTITY\", \"SHWEBSHOPAPPKEY\", \"SHWEBSHOPAPPSECRET\", \"SHWEBSHOPSESSIONKEY\", \"SHWEBSHOPSESSIONTAG\", \"SHENABLED\", \"SHOWNERNICK\", \"SHOWNERNAME\", \"SHCOUNTRY\", \"SHPROVINCE\", \"SHCITY\", \"SHDISTRICT\", \"SHADDRESS\", \"SHPOSTCODE\", \"SHPHONE\", \"SHFAX\", \"SHAREA\", \"SHTEXT1\", \"SHTEXT2\", \"SHTEXT3\", \"SHTEXT4\", \"SHTEXT5\", \"SHTEXT6\", \"SHTEXT7\", \"SHTEXT8\", \"SHTEXT9\", \"SHTEXT10\", \"SHLONGTEXT1\", \"SHLONGTEXT2\", \"SHLONGTEXT3\", \"SHCHECKBOX1\", \"SHCHECKBOX2\", \"SHCHECKBOX3\", \"SHCHECKBOX4\", \"SHCHECKBOX5\", \"SHDATE1\", \"SHDATE2\", \"SHDATE3\", \"SHINT1\", \"SHINT2\", \"SHINT3\", \"SHDECIMAL1\", \"SHDECIMAL2\", \"SHDECIMAL3\", \"SHCREATEUSER\", \"SHCREATETIME\", \"SHLASTUPDATEUSER\", \"SHLASTUPDATETIME\", \"SHINVEXPSETTING\", \"SHWEBSHOPOTHERPARAM\", \"SHRELATECUSTOMER\") values (:p0, :p1, :p2, :p3, :p4, null, null, null, null, null, null, null, null, :p5, null, null, null, null, null, null, null, :p6, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, :p7, :p8, :p9, :p10, :p11, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)";
 
                     List<OracleParameter> list = new List<OracleParameter>
-                {
-                    new OracleParameter("p0", OracleDbType.Raw, Guid.NewGuid().ToByteArray(), ParameterDirection.Input),
-                    new OracleParameter("p1", OracleDbType.Raw, Guid.Empty.ToByteArray(), ParameterDirection.Input),
-                    new OracleParameter("p2", OracleDbType.NVarchar2, identityCode, ParameterDirection.Input),
-                    new OracleParameter("p3", OracleDbType.NVarchar2,txtName.Text, ParameterDirection.Input),
-                    new OracleParameter("p4", OracleDbType.NVarchar2,txtCode.Text, ParameterDirection.Input),
-                    new OracleParameter("p5", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p6", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p7", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p8", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p9", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p10", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p11", OracleDbType.Int16,0, ParameterDirection.Input),
-                };
+                    {
+                        new OracleParameter("p0", OracleDbType.Raw, Guid.NewGuid().ToByteArray(),
+                            ParameterDirection.Input),
+                        new OracleParameter("p1", OracleDbType.Raw, Guid.Empty.ToByteArray(), ParameterDirection.Input),
+                        new OracleParameter("p2", OracleDbType.NVarchar2, identityCode, ParameterDirection.Input),
+                        new OracleParameter("p3", OracleDbType.NVarchar2, txtName.Text, ParameterDirection.Input),
+                        new OracleParameter("p4", OracleDbType.NVarchar2, txtCode.Text, ParameterDirection.Input),
+                        new OracleParameter("p5", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        new OracleParameter("p6", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        new OracleParameter("p7", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        new OracleParameter("p8", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        new OracleParameter("p9", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        new OracleParameter("p10", OracleDbType.Int16, 0, ParameterDirection.Input),
+                        new OracleParameter("p11", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    };
 
                     OracleHelper.ExecuteNonQuery(connStr, sql, list.ToArray());
                 }
@@ -582,7 +595,8 @@ namespace WindowsFormsApplication9
             StringBuilder sb = new StringBuilder();
 
             var code = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            var connStr = "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
+            var connStr =
+                "DATA SOURCE=//192.168.0.11/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY_1116;PROMOTABLE TRANSACTION=LOCAL;";
 
             var watch = new Stopwatch();
 
@@ -641,15 +655,15 @@ namespace WindowsFormsApplication9
                     new OracleParameter("p0", OracleDbType.Raw, Guid.NewGuid().ToByteArray(), ParameterDirection.Input),
                     new OracleParameter("p1", OracleDbType.Raw, Guid.Empty.ToByteArray(), ParameterDirection.Input),
                     new OracleParameter("p2", OracleDbType.NVarchar2, identityCode, ParameterDirection.Input),
-                    new OracleParameter("p3", OracleDbType.NVarchar2,txtName.Text, ParameterDirection.Input),
-                    new OracleParameter("p4", OracleDbType.NVarchar2,txtCode.Text, ParameterDirection.Input),
-                    new OracleParameter("p5", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p6", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p7", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p8", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p9", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p10", OracleDbType.Int16,0, ParameterDirection.Input),
-                    new OracleParameter("p11", OracleDbType.Int16,0, ParameterDirection.Input),
+                    new OracleParameter("p3", OracleDbType.NVarchar2, txtName.Text, ParameterDirection.Input),
+                    new OracleParameter("p4", OracleDbType.NVarchar2, txtCode.Text, ParameterDirection.Input),
+                    new OracleParameter("p5", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    new OracleParameter("p6", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    new OracleParameter("p7", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    new OracleParameter("p8", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    new OracleParameter("p9", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    new OracleParameter("p10", OracleDbType.Int16, 0, ParameterDirection.Input),
+                    new OracleParameter("p11", OracleDbType.Int16, 0, ParameterDirection.Input),
                 };
 
                 OracleHelper.ExecuteNonQuery(connStr, sql, list.ToArray());
@@ -662,6 +676,78 @@ namespace WindowsFormsApplication9
 
 
             MessageBox.Show(sb.ToString());
+        }
+
+        private void btnTransactionTimeoutTest_Click(object sender, EventArgs e)
+        {
+            using (var scope2 = new TransactionScope())
+            {
+
+                var span = new TimeSpan(0, 0, 5);
+                for (var i = 6; i > 0; i--)
+                {
+                    try
+                    {
+                        using (var scope = new TransactionScope(TransactionScopeOption.RequiresNew, span))
+                        {
+                            var connStr =
+                                "DATA SOURCE=//192.168.0.21/YUNSH;PASSWORD=jooge2012;PERSIST SECURITY INFO=True;USER ID=TERRY;PROMOTABLE TRANSACTION=LOCAL;";
+
+                            var code = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+
+                            //再用EntLib插入
+                            var identityCode = code;
+
+                            string sql =
+                                "insert into \"SHOP\"(\"SHID\", \"SHDOMAINID\", \"SHIDENTITYCODE\", \"SHCODE\", \"SHNAME\", \"SHDEFAULTWAREHOUSE\", \"SHWEBSHOPPLATFORMTYPE\", \"SHSHORTCUTCODE\", \"SHOUTERCODE\", \"SHWEBSHOPTYPE\", \"SHDESC\", \"SHTYPE\", \"SHLEVEL\", \"SHISWEBSHOP\", \"SHWEBSHOPID\", \"SHWEBSHOPURL\", \"SHWEBSHOPUSERIDENTITY\", \"SHWEBSHOPAPPKEY\", \"SHWEBSHOPAPPSECRET\", \"SHWEBSHOPSESSIONKEY\", \"SHWEBSHOPSESSIONTAG\", \"SHENABLED\", \"SHOWNERNICK\", \"SHOWNERNAME\", \"SHCOUNTRY\", \"SHPROVINCE\", \"SHCITY\", \"SHDISTRICT\", \"SHADDRESS\", \"SHPOSTCODE\", \"SHPHONE\", \"SHFAX\", \"SHAREA\", \"SHTEXT1\", \"SHTEXT2\", \"SHTEXT3\", \"SHTEXT4\", \"SHTEXT5\", \"SHTEXT6\", \"SHTEXT7\", \"SHTEXT8\", \"SHTEXT9\", \"SHTEXT10\", \"SHLONGTEXT1\", \"SHLONGTEXT2\", \"SHLONGTEXT3\", \"SHCHECKBOX1\", \"SHCHECKBOX2\", \"SHCHECKBOX3\", \"SHCHECKBOX4\", \"SHCHECKBOX5\", \"SHDATE1\", \"SHDATE2\", \"SHDATE3\", \"SHINT1\", \"SHINT2\", \"SHINT3\", \"SHDECIMAL1\", \"SHDECIMAL2\", \"SHDECIMAL3\", \"SHCREATEUSER\", \"SHCREATETIME\", \"SHLASTUPDATEUSER\", \"SHLASTUPDATETIME\", \"SHINVEXPSETTING\", \"SHWEBSHOPOTHERPARAM\", \"SHRELATECUSTOMER\") values (:p0, :p1, :p2, :p3, :p4, null, null, null, null, null, null, null, null, :p5, null, null, null, null, null, null, null, :p6, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, :p7, :p8, :p9, :p10, :p11, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)";
+
+                            List<OracleParameter> list = new List<OracleParameter>
+                            {
+                                new OracleParameter("p0", OracleDbType.Raw, Guid.NewGuid().ToByteArray(),
+                                    ParameterDirection.Input),
+                                new OracleParameter("p1", OracleDbType.Raw, Guid.Empty.ToByteArray(),
+                                    ParameterDirection.Input),
+                                new OracleParameter("p2", OracleDbType.NVarchar2, identityCode, ParameterDirection.Input),
+                                new OracleParameter("p3", OracleDbType.NVarchar2, txtName.Text, ParameterDirection.Input),
+                                new OracleParameter("p4", OracleDbType.NVarchar2, txtCode.Text, ParameterDirection.Input),
+                                new OracleParameter("p5", OracleDbType.Int16, 0, ParameterDirection.Input),
+                                new OracleParameter("p6", OracleDbType.Int16, 0, ParameterDirection.Input),
+                                new OracleParameter("p7", OracleDbType.Int16, 0, ParameterDirection.Input),
+                                new OracleParameter("p8", OracleDbType.Int16, 0, ParameterDirection.Input),
+                                new OracleParameter("p9", OracleDbType.Int16, 0, ParameterDirection.Input),
+                                new OracleParameter("p10", OracleDbType.Int16, 0, ParameterDirection.Input),
+                                new OracleParameter("p11", OracleDbType.Int16, 0, ParameterDirection.Input),
+                            };
+
+                            Thread.Sleep(1000*i);
+
+                            OracleHelper.ExecuteNonQuery(connStr, sql, list.ToArray());
+
+                            scope.Complete();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+                scope2.Complete();
+            }
+
+        }
+
+
+        /// <summary>
+        /// 获取一个长度为19的唯一id
+        /// 原理是取一个guid的前8个字节，转为ulong，重复的概率很小
+        /// </summary>
+        /// <returns></returns>
+        public ulong GetUniqueId()
+        {
+            byte[] buffer = Guid.NewGuid().ToByteArray();
+            return BitConverter.ToUInt64(buffer, 0);
         }
 
     }

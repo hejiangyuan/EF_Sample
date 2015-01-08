@@ -37,6 +37,7 @@
             this.btnStateTest = new System.Windows.Forms.Button();
             this.btnHunhe = new System.Windows.Forms.Button();
             this.btnSpeedTest = new System.Windows.Forms.Button();
+            this.btnTransactionTimeoutTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,11 +124,22 @@
             this.btnSpeedTest.UseVisualStyleBackColor = true;
             this.btnSpeedTest.Click += new System.EventHandler(this.btnSpeedTest_Click);
             // 
+            // btnTransactionTimeoutTest
+            // 
+            this.btnTransactionTimeoutTest.Location = new System.Drawing.Point(631, 63);
+            this.btnTransactionTimeoutTest.Name = "btnTransactionTimeoutTest";
+            this.btnTransactionTimeoutTest.Size = new System.Drawing.Size(87, 23);
+            this.btnTransactionTimeoutTest.TabIndex = 7;
+            this.btnTransactionTimeoutTest.Text = "事务超时测试";
+            this.btnTransactionTimeoutTest.UseVisualStyleBackColor = true;
+            this.btnTransactionTimeoutTest.Click += new System.EventHandler(this.btnTransactionTimeoutTest_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 589);
+            this.Controls.Add(this.btnTransactionTimeoutTest);
             this.Controls.Add(this.btnSpeedTest);
             this.Controls.Add(this.btnHunhe);
             this.Controls.Add(this.btnStateTest);
@@ -156,6 +168,7 @@
         private System.Windows.Forms.Button btnStateTest;
         private System.Windows.Forms.Button btnHunhe;
         private System.Windows.Forms.Button btnSpeedTest;
+        private System.Windows.Forms.Button btnTransactionTimeoutTest;
 
     }
 }
