@@ -59,11 +59,12 @@
       <HintPath>..\packages\MySql.Data.Entity.6.9.5\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\odp.net.managed.121.1.2\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\10JoogeRD\100Shanhuyun\40Lib\Oracle\Oracle12\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <HintPath>..\packages\odp.net.entityframework.6.121.1-beta\lib\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\10JoogeRD\100Shanhuyun\40Lib\Oracle\Oracle12\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -135,7 +136,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DbContextScope\EntityFramework.Implementation\EntityFramework.Implementation.csproj">
       <Project>{BCD94CFB-8286-4BD1-8D88-C34C0C48C9EC}</Project>
